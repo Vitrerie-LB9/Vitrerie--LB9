@@ -15,18 +15,41 @@ const SERVICE_OPTIONS = [
 export default function SoumissionForm() {
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSubmitted(true);
+  const [error, setError] = useState<string | null>(null);
+const [loading, setLoading] = useState(false);
 
-    // ---------------------------------------------------------------
-    // INTÉGRATION HUBSPOT
-    // Remplacer ce bloc par l'appel à l'API Forms de HubSpot, ou par
-    // le script d'intégration natif (Marketing > Formulaires > obtenir
-    // le code d'intégration). Les champs ci-dessous (nom, tel,
-    // courriel, service, details) correspondent aux valeurs à envoyer.
-    // ---------------------------------------------------------------
+async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  setError(null);
+  setLoading(true);
+
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch("/api/soumission", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: formData.get("nom"),
+        lastName: "",
+        email: formData.get("courriel"),
+        phone: formData.get("tel"),
+        message: `Service: ${formData.get("service")}\n\n${formData.get("details")}`,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de l'envoi");
+    }
+
+    setSubmitted(true);
+  } catch (err) {
+    setError("Une erreur est survenue. Veuillez réessayer ou nous appeler directement.");
+  } finally {
+    setLoading(false);
   }
+}
 
   if (submitted) {
     return (
@@ -106,12 +129,16 @@ export default function SoumissionForm() {
         />
       </div>
 
-      <button
-        type="submit"
-        className="w-full rounded-sm bg-ink py-4 text-base font-semibold text-paper transition-colors hover:bg-ink-3"
-      >
-        Envoyer ma demande
-      </button>
+{error && (
+  <p className="mb-3 text-sm text-red-600">{error}</p>
+)}
+<button
+  type="submit"
+  disabled={loading}
+  className="w-full rounded-sm bg-ink py-4 text-base font-semibold text-paper transition-colors hover:bg-ink-3 disabled:opacity-60"
+>
+  {loading ? "Envoi en cours..." : "Envoyer ma demande"}
+</button>
       <p className="mt-3.5 text-center text-xs text-gray">
         Formulaire prêt à connecter à HubSpot (voir le commentaire dans soumission-form.tsx).
       </p>
