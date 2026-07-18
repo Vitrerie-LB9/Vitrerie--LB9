@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  /* Couleurs de marque */
+  --color-ink: #0a0a0a;
+  --color-ink-2: #191c1f;
+  --color-ink-3: #1c1c1e;
+  --color-paper: #ffffff;
+  --color-sand: #f5f5f3;
+  --color-sand-2: #ededec;
+  --color-gray: #86868b;
+  --color-gray-dark: #4a4a4c;
+  --color-gold: #b0854a;
+  --color-gold-light: #cda36b;
+  --color-gold-pale: #f3eada;
+
+  /* Polices — exposées via next/font en variables CSS dans app/layout.tsx */
+  --font-display: var(--font-libre-franklin), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, monospace;
+
+  --ease-brand: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-family: var(--font-body);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+}
+
+/* Animation de révélation discrète au défilement (voir components/reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s var(--ease-brand),
+    transform 0.6s var(--ease-brand);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
