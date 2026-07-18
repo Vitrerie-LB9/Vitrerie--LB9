@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Libre_Franklin, Public_Sans, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { SITE } from "@/lib/constants";
 import Header from "@/components/header";
@@ -66,6 +67,7 @@ export default function RootLayout({
         <Footer />
         <MobileCtaBar />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
