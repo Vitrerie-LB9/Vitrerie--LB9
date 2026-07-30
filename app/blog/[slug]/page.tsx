@@ -40,15 +40,31 @@ export default async function BlogPostPage({
 
       <div className="flex flex-col gap-5 text-ink/90">
         {post.sections.map((section, i) => {
-          if (section.type === "h2") {
-            return (
-              <h2 key={i} className="mt-4 text-xl font-semibold text-ink">
-                {section.text}
-              </h2>
-            );
-          }
-          // ... garde le reste de tes types de section tel quel
-        })}
+  if (section.type === "h2") {
+    return (
+      <h2 key={i} className="mt-4 text-xl font-semibold text-ink">
+        {section.text}
+      </h2>
+    );
+  }
+  if (section.type === "p") {
+    return (
+      <p key={i} className="leading-relaxed">
+        {section.text}
+      </p>
+    );
+  }
+  if (section.type === "ul") {
+    return (
+      <ul key={i} className="list-disc pl-5 space-y-1">
+        {section.items?.map((item, j) => (
+          <li key={j}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+  return null;
+})}
       </div>
     </main>
   );
