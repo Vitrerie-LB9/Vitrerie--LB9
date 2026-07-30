@@ -1,13 +1,17 @@
-import { BLOG_POSTS } from "@/lib/blog-posts";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-
+import { notFound } from "next/navigation";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
   return {
     title: `${post.title} | Vitrerie LB9`,
@@ -15,8 +19,13 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
   return (
@@ -38,29 +47,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               </h2>
             );
           }
-          if (section.type === "ul") {
-            return (
-              <ul key={i} className="list-disc pl-6">
-                {section.items?.map((item, j) => (
-                  <li key={j}>{item}</li>
-                ))}
-              </ul>
-            );
-          }
-          return <p key={i}>{section.text}</p>;
+          // ... garde le reste de tes types de section tel quel
         })}
-      </div>
-
-      <div className="mt-12 rounded-sm bg-sand p-6">
-        <p className="mb-3 font-semibold text-ink">
-          Une fenetre embuee chez vous ?
-        </p>
-        <Link
-          href="/#soumission"
-          className="inline-flex rounded-sm bg-gold px-5 py-2.5 text-sm font-semibold text-paper hover:bg-gold-light"
-        >
-          Demander une soumission
-        </Link>
       </div>
     </main>
   );
