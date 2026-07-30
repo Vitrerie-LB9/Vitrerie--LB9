@@ -6,6 +6,7 @@ import { SITE } from "@/lib/constants";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import MobileCtaBar from "@/components/mobile-cta-bar";
+import JsonLd from "@/components/JsonLd"
 
 const libreFranklin = Libre_Franklin({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${libreFranklin.variable} ${publicSans.variable} ${spaceMono.variable}`}>
       <body className="pb-14 sm:pb-0">
+      <JsonLd />
         <Header />
         <main>{children}</main>
         <Footer />
