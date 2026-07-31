@@ -20,12 +20,13 @@ export default function JsonLd() {
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '8475 Rue Du Quartz', // ← ton adresse d'affaires
-      addressLocality: 'Québec', // ← ta ville
-      addressRegion: 'QC',
-      postalCode: 'G2K 1C3', // ← ton code postal
-      addressCountry: 'CA',
-    },
+      address: {
+  '@type': 'PostalAddress',
+  addressLocality: 'Québec',
+  addressRegion: 'QC',
+  postalCode: 'G2K 1C3',
+  addressCountry: 'CA',
+},
     areaServed: [
       { '@type': 'City', name: 'Québec' },
       { '@type': 'City', name: 'Lévis' },
