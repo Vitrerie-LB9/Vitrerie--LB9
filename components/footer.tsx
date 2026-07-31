@@ -62,20 +62,22 @@ export default function Footer() {
             <h5 className="font-mono mb-4 text-[0.7rem] uppercase tracking-wider text-gray">
               Navigation
             </h5>
-            <ul className="flex flex-col gap-2.5 text-[0.92rem]">
-              <li><Link href="/#accueil" className="hover:text-gold">Accueil</Link></li>
-              <li><Link href="/#realisations" className="hover:text-gold">Réalisations</Link></li>
-              <li><Link href="/#apropos" className="hover:text-gold">À propos</Link></li>
-              <li><Link href="/#soumission" className="hover:text-gold">Soumission</Link></li>
-            </ul>
-          </div>
-        </div>
+<ul className="flex flex-col gap-2.5 text-[0.92rem]">
+  <li><Link href="/#accueil" className="hover:text-gold">Accueil</Link></li>
+  <li><Link href="/#realisations" className="hover:text-gold">Réalisations</Link></li>
+  <li><Link href="/#apropos" className="hover:text-gold">À propos</Link></li>
+  <li><Link href="/blog" className="hover:text-gold">Conseils</Link></li>
+  <li><Link href="/#soumission" className="hover:text-gold">Soumission</Link></li>
+        </ul>
+    </div>
+  </div>
 
-        <div className="font-mono flex flex-col gap-2 pt-6 text-xs text-gray sm:flex-row sm:justify-between">
-          <span>© {year} {SITE.name} inc. — Incorporée en {SITE.founded}</span>
-          <span>RBQ {SITE.rbq}</span>
-        </div>
-      </div>
-    </footer>
+  <div className="font-mono flex flex-col gap-2 pt-6 text-xs text-gray sm:flex...">
+    <span>© {year} {SITE.name} inc. — Incorporée en {SITE.founded}</span>
+    <span>RBQ {SITE.rbq}</span>
+	</div>
+    </div>
+  </footer>
   );
 }
+
