@@ -139,9 +139,7 @@ async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 >
   {loading ? "Envoi en cours..." : "Envoyer ma demande"}
 </button>
-      <p className="mt-3.5 text-center text-xs text-gray">
-        Formulaire prêt à connecter à HubSpot (voir le commentaire dans soumission-form.tsx).
-      </p>
+
     </form>
   );
 }
