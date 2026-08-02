@@ -18,9 +18,7 @@ export default function JsonLd() {
     email: 'info@vitrerielb9.com',
     foundingDate: '2023-05-21',
     priceRange: '$$',
-    address: {
-      '@type': 'PostalAddress',
-      address: {
+   address: {
   '@type': 'PostalAddress',
   addressLocality: 'Québec',
   addressRegion: 'QC',
@@ -43,12 +41,12 @@ export default function JsonLd() {
       'Portes de verre et portes commerciales',
       'Miroirs sur mesure',
       'Calfeutrage',
-      'Réparation et ajustement de portes',
-    ].map((service) => ({
+      'Réparation et ajustement de portes',]
+    .map((service) => ({
       '@type': 'Offer',
       itemOffered: { '@type': 'Service', name: service },
     })),
-  }
+  };
 
   return (
     <script
