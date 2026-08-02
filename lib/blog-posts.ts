@@ -55,5 +55,32 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "Dans tous les autres cas, remplacer uniquement le thermos est la solution la plus rapide et la plus économique.",
       },
     ],
+  },{
+    slug: "verre-trempe-vs-verre-feuillete",
+    title: "Verre trempé ou verre feuilleté : quelle est la différence ?",
+    description:
+      "Les deux sont des verres de sécurité, mais ils ne réagissent pas pareil en cas de bris. Voici comment choisir selon votre projet.",
+    date: "2026-08-02",
+    sections: [
+      {
+        type: "p",
+        text: "On nous pose souvent la question quand vient le temps de choisir le verre pour une douche, une porte ou une cloison. Le verre trempé et le verre feuilleté sont tous les deux des verres de sécurité, mais ils ne se comportent pas de la même façon en cas de bris — et ça change ce qui convient le mieux à votre projet.",
+      },
+      { type: "h2", text: "Le verre trempé" },
+      {
+        type: "p",
+        text: "Chauffé puis refroidi rapidement, le verre trempé devient beaucoup plus résistant qu'un verre ordinaire. S'il finit par casser, il se fragmente en petits morceaux granuleux, peu coupants. C'est le choix le plus courant pour les portes de douche, les cloisons et les portes vitrées.",
+      },
+      { type: "h2", text: "Le verre feuilleté" },
+      {
+        type: "p",
+        text: "Composé de deux épaisseurs de verre collées ensemble avec un film plastique entre les deux, le verre feuilleté reste en place même s'il se fissure — un peu comme un pare-brise d'auto. C'est le choix privilégié pour les garde-corps et tout endroit où une chute est possible, puisque le panneau ne s'effondre pas d'un coup s'il se brise.",
+      },
+      { type: "h2", text: "Lequel choisir ?" },
+      {
+        type: "p",
+        text: "Pour une douche ou une porte intérieure, le verre trempé fait généralement le travail. Pour un garde-corps ou tout ce qui protège contre une chute, le verre feuilleté est le choix le plus sûr, parfois même exigé. On vous conseille le bon type selon votre projet lors de la visite de mesure.",
+      },
+    ],
   },
 ];
